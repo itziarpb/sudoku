@@ -1,0 +1,46 @@
+
+.sudoku-board {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(9, 40px);
+    grid-template-rows: repeat(9, 40px); 
+    gap: 1px;
+    width: 368px;
+    height: 366px;
+    background: black;
+    padding: 3px;
+    
+  }
+  .sudoku-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background: white;
+    border: none;
+    text-align: center;
+    color:blue;
+  }
+  .sudoku-cell:hover {
+    background: rgb(214, 233, 240);
+  } */
+  .sudoku-cell:focus {
+    outline: none;
+    background: rgb(214, 233, 240);
+  }
+  .sudoku-cell:disabled {
+    color: black;
+    background: white;
+  }
+  
+  
+  /* Estilos especiales para los bloques de 3x3*/
+   .sudoku-cell:nth-child(3n):not(:nth-child(9n)) {
+    border-right: 2px solid black;
+  }
+  .sudoku-cell:nth-child(27n), .sudoku-cell:nth-child(27n-1), .sudoku-cell:nth-child(27n-2),
+  .sudoku-cell:nth-child(27n-3), .sudoku-cell:nth-child(27n-4), .sudoku-cell:nth-child(27n-5),
+  .sudoku-cell:nth-child(27n-6), .sudoku-cell:nth-child(27n-7), .sudoku-cell:nth-child(27n-8){
+    border-bottom: 2px solid black;
+  }
+  
