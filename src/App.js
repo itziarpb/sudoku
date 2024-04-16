@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>SUDOKU</h1>
+      <h1>JUEGO DEL SUDOKU</h1>
       <Home/>
     </div>
   );

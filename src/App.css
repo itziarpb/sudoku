@@ -7,6 +7,11 @@ h1 {
   font-family: 'Cantarell', sans-serif;
 }
 
+h3 {
+  text-align: center;
+  font-family: 'Cantarell', sans-serif;
+}
+
 
 
 
@@ -18,5 +23,13 @@ h1 {
 }
 
 .difficulty-buttom {
-  background-color: rgb(226, 162, 43);
+  padding: 10px 20px;
+  background-color: #eaa840;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.difficulty-buttom:hover {
+  background-color: rgb(221, 150, 35);
 }
