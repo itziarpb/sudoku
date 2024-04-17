@@ -4,33 +4,6 @@
   align-items: center;
 }
 
-/* Formato de los botones */
-.game-bottoms {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.game-bottom {
-  padding: 10px 20px;
-  background-color: #eaa840;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 120px;
-}
-
-.game-bottom:last-child {
-  margin-top: 80px;
-}
-
-.game-bottom:hover {
-  background-color: rgb(221, 150, 35);
-}
-/* Formato de los botones */
 
 /* Formato del sudoku */
 .sudoku-board {
@@ -41,7 +14,7 @@
   gap: 1px;
   width: 368px;
   height: 366px;
-  background: black;
+  background: rgb(43, 55, 82);
   padding: 3px;
 
 }
@@ -70,7 +43,7 @@
 
       /* Estilos especiales para los bloques de 3x3*/
 .sudoku-cell:nth-child(3n):not(:nth-child(9n)) {
-  border-right: 2px solid black;
+  border-right: 2px solid rgb(43, 55, 82);
 }
 .sudoku-cell:nth-child(27n),
 .sudoku-cell:nth-child(27n-1),
@@ -81,10 +54,45 @@
 .sudoku-cell:nth-child(27n-6),
 .sudoku-cell:nth-child(27n-7),
 .sudoku-cell:nth-child(27n-8) {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgb(43, 55, 82);
 }
 
 .wrong {
   color: red;
 }
 /* Formato del sudoku */
+
+/* Formato de los botones */
+.game-bottoms {
+  display: flex;
+  flex-direction: column;
+  justify-content:center ;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.game-bottom {
+  padding: 10px 20px;
+  background-color: rgb(46, 110, 101);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.game-bottom:hover {
+  background-color:  rgb(51, 147, 134);
+}
+/* Formato de los botones */
+
+/* Formato del cronometro */
+.chrono {
+  border: 2px solid  rgb(46, 110, 101);
+  padding: 8px;
+  margin: 5px;
+  background: white;
+
+}
+/* Formato del cronometro */
