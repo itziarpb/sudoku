@@ -6,14 +6,22 @@ const Game = (props) => {
     const [visibleSudoku, setVisibleSudoku] = useState([]); //el sudoku que verá el jugador al inicio
     const [inputSudoku, setInputSudoku] = useState([]); //almacena los valores que introduce el jugador
 
-    const [solutionSudoku, setsolutionSudoku] = useState([]); //almacena la solución para comprobar si esta correcto.
+    const [solutionSudoku, setSolutionSudoku] = useState([]); //almacena la solución para comprobar si esta correcto.
     const [wrongCells, setWrongCells] = useState([]);
+    const [winner, setWinner] = useState(false);
+
+    const [totalSeconds, setTotalSeconds] = useState(0); // almacena el tiempo total del contador
+    const [hours, setHours] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+
+
 
     //Funcion que genera el sudoku. 1ª obtiene una solucion del archivo .json. 2º elimina numeros para mostrarlo al jugador
     const generateSudoku = (difficulty) => {
 
         const randomIndex = Math.floor(Math.random() * sudokusJson.length);
-        setsolutionSudoku(JSON.parse(JSON.stringify(sudokusJson[randomIndex])));
+        setSolutionSudoku(JSON.parse(JSON.stringify(sudokusJson[randomIndex])));
 
         // Poner el numero de huecos vacíos en las coordenadas aleatorias que indica la prop.difficulty.
         const emptyIndexes = [];
@@ -49,22 +57,18 @@ const Game = (props) => {
         setInputSudoku(newInputSudoku);
         //Elimina la celda de las incorrecta para que vuelva a ser azul
         const newWrongCells = wrongCells.filter(cell => cell !== `${rowIndex},${colIndex}`);
-        setWrongCells(newWrongCells); 
+        setWrongCells(newWrongCells);
     };
 
     //Funcion que reestablece los valores iniciales.
     const handleRestart = () => {
-        // Mostrar una confirmación antes de reiniciar
         const confirmRestart = window.confirm("¿Estás seguro de que deseas reiniciar?");
         if (confirmRestart) {
             setInputSudoku(visibleSudoku.map(row => row.slice()));
         }
     }
 
-    //Funcion que vuelve al inicio
-    const handleBack = () => {
-        props.setShowGame(false);
-    }
+
 
     //Funcion que comprueba si la solucion es correcta
     const handleSolve = () => {
@@ -84,18 +88,46 @@ const Game = (props) => {
         setInputSudoku(newInputSudoku);
         setWrongCells(newWrongCells); // Actualizar las celdas incorrectas
         if (isSolved) {
+            setWinner(isSolved)
             alert("¡Enhorabuena! Has resuelto el sudoku correctamente.");
+            props.setShowGame(false);
         }
     }
-    
+
+
+    //Funcion que vuelve al inicio
+    const handleBack = () => {
+        props.setShowGame(false);
+    }
 
     //Crea el sudoku cuando se carga el componente.
     useEffect(() => {
-        generateSudoku(props.difficulty)
+        generateSudoku(props.difficulty);
+
+        const intervalId = setInterval(() => {
+            if (!winner) {
+                setTotalSeconds((prevSeconds) => prevSeconds + 1)
+            }
+
+        }, 1000)
+        return () => { clearInterval(intervalId) }
+
+
     }, []);
+
+    useEffect(() => {
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+        setHours(h);
+        setMinutes(m);
+        setSeconds(s);
+    }, [totalSeconds]);
+
 
     return (
         <div className="game">
+            <div className="chrono">{hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}</div>
             <div className="sudoku-board">
                 {inputSudoku.map((row, rowIndex) => (
                     row.map((cell, colIndex) => (
@@ -114,10 +146,11 @@ const Game = (props) => {
                 ))}
             </div>
             <div className="game-bottoms">
-            <button className="game-bottom" onClick={handleRestart}>Reiniciar</button>
-            <button className="game-bottom" onClick={handleSolve}>Resolver</button>
-            <button className="game-bottom" onClick={handleBack}>Volver atrás</button>
+                <button className="game-bottom" onClick={handleRestart}>Reiniciar</button>
+                <button className="game-bottom" onClick={handleSolve}>Resolver</button>
+                <button className="game-bottom" onClick={handleBack}>Volver atrás</button>
             </div>
+
         </div>
     )
 }

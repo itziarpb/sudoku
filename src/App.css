@@ -1,7 +1,7 @@
 h1 {
   text-align: center;
   margin-top: 50px;
-  color: rgb(31, 11, 130);
+  color: rgb(43, 55, 82);
   width: 30%;
   margin-inline: auto;
   font-family: 'Cantarell', sans-serif;
@@ -24,12 +24,12 @@ h3 {
 
 .difficulty-buttom {
   padding: 10px 20px;
-  background-color: #eaa840;
+  background-color: rgb(46, 110, 101);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 .difficulty-buttom:hover {
-  background-color: rgb(221, 150, 35);
+  background-color: rgb(51, 147, 134);
 }
