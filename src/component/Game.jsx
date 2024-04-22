@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import './Game.css'
-import sudokusJson from './dataSudokus.json'
+import React, { useState, useEffect, useContext } from 'react'
+import { GlobalContext } from '../store/appContext';
+import '../Game.css'
+import sudokusJson from '../dataSudokus.json'
 
 const Game = (props) => {
     const [visibleSudoku, setVisibleSudoku] = useState([]); //el sudoku que verá el jugador al inicio
@@ -10,7 +11,7 @@ const Game = (props) => {
     const [wrongCells, setWrongCells] = useState([]);
     const [winner, setWinner] = useState(false);
 
-    const [totalSeconds, setTotalSeconds] = useState(0); // almacena el tiempo total del contador
+    const { totalSeconds, setTotalSeconds } = useContext(GlobalContext);    // almacena el tiempo total del contador
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
@@ -126,31 +127,45 @@ const Game = (props) => {
 
 
     return (
-        <div className="game">
+        <div className='container-fluid'>
             <div className="chrono">{hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}</div>
-            <div className="sudoku-board">
-                {inputSudoku.map((row, rowIndex) => (
-                    row.map((cell, colIndex) => (
-                        <input
-                            key={`${rowIndex}-${colIndex}`}
-                            //className="sudoku-cell" 
-                            className={wrongCells.includes(`${rowIndex},${colIndex}`) ? "sudoku-cell wrong" : "sudoku-cell"}
-                            type="numeric"
-                            min="1"
-                            max="9"
-                            disabled={visibleSudoku[rowIndex][colIndex] !== null}
-                            value={cell !== null ? cell : ''}
-                            onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
-                        />
-                    ))
-                ))}
-            </div>
-            <div className="game-bottoms">
-                <button className="game-bottom" onClick={handleRestart}>Reiniciar</button>
-                <button className="game-bottom" onClick={handleSolve}>Resolver</button>
-                <button className="game-bottom" onClick={handleBack}>Volver atrás</button>
-            </div>
+            <div className="game row">
+                <div className="col-lg col-12 order-lg-first order-last  p-5">
+                    <div className="text-center">
+                        ¿Cómo jugar un sudoku?
+                    </div>
+                    <div className="text-left">El objetivo del sudoku es rellenar una cuadrícula de 9 x 9 con dígitos, de tal manera que cada columna,
+                        fila y sección de 3 x 3 contenga cada uno de los dígitos entre 1 y 9.</div>
+                    <div className="text-left">Tu trabajo consiste en usar la lógica para rellenar los dígitos que faltan y completar la  cuadrícula.</div>
+                    <div className="text-left"></div>
+                </div>
+                <div className="sudoku-board col-lg col-sm col-12 m-1 justify-content-center">
+                    {inputSudoku.map((row, rowIndex) => (
+                        row.map((cell, colIndex) => (
+                            <input
+                                key={`${rowIndex}-${colIndex}`}
+                                //className="sudoku-cell" 
+                                className={wrongCells.includes(`${rowIndex},${colIndex}`) ? "sudoku-cell wrong" : "sudoku-cell"}
+                                type="numeric"
+                                min="1"
+                                max="9"
+                                disabled={visibleSudoku[rowIndex][colIndex] !== null}
+                                value={cell !== null ? cell : ''}
+                                onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
+                            />
+                        ))
+                    ))}
+                </div>
+                <div className="col-lg col-sm col-12 d-block justify-content-center ">
 
+                    <div className="game-bottoms">
+                        <button className="game-bottom" onClick={handleRestart}>Reiniciar</button>
+                        <button className="game-bottom" onClick={handleSolve}>Resolver</button>
+                        <button className="game-bottom" onClick={handleBack}>Volver atrás</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     )
 }

@@ -1,8 +1,19 @@
+.navbar {
+  background: rgb(134, 238, 96);
+}
+.navbar-brand {
+  color: rgb(43, 55, 82);
+  text-align: center;
+  font-family: 'Cantarell', sans-serif;
+  font-size: 30px;
+}
+
 h1 {
   text-align: center;
   margin-top: 50px;
+  margin-bottom: 20px;
   color: rgb(43, 55, 82);
-  width: 30%;
+  width: 40%;
   margin-inline: auto;
   font-family: 'Cantarell', sans-serif;
 }
@@ -10,16 +21,21 @@ h1 {
 h3 {
   text-align: center;
   font-family: 'Cantarell', sans-serif;
+  margin-bottom: 40px;
+}
+p {
+  font-size: 18px;
+  
 }
 
 
 
-
 .buttonGroup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
   gap: 10px;
+  width: 100%;
+  margin-bottom: 40px;
+
 }
 
 .difficulty-buttom {
