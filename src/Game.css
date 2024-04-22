@@ -7,16 +7,13 @@
 
 /* Formato del sudoku */
 .sudoku-board {
-  margin: 10px;
   display: grid;
-  grid-template-columns: repeat(9, 40px);
-  grid-template-rows: repeat(9, 40px);
-  gap: 1px;
-  width: 368px;
-  height: 366px;
-  background: rgb(43, 55, 82);
-  padding: 3px;
+  grid-template-columns: repeat(9, 45px);
+  grid-template-rows: repeat(9, 45px);
 
+  padding: 0px;
+  box-shadow: 0px 0px 10px rgb(43, 55, 82);
+  ;
 }
 
 .sudoku-cell {
@@ -24,27 +21,40 @@
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  background: white;
-  border: none;
+  background: rgb(244, 247, 237);
+  border: 1px solid rgb(43, 55, 82);
+  ;
   text-align: center;
   color: blue;
 }
+
 .sudoku-cell:hover {
   background: rgb(214, 233, 240);
 }
+
 .sudoku-cell:focus {
   outline: none;
   background: rgb(214, 233, 240);
 }
+
 .sudoku-cell:disabled {
   color: black;
   background: white;
 }
 
-      /* Estilos especiales para los bloques de 3x3*/
-.sudoku-cell:nth-child(3n):not(:nth-child(9n)) {
-  border-right: 2px solid rgb(43, 55, 82);
+/* Estilos especiales para los bloques de 3x3*/
+.sudoku-cell:nth-child(9n+1) {
+  border-left: 3px solid rgb(43, 55, 82);
 }
+
+.sudoku-cell:nth-child(3n) {
+  border-right: 3px solid rgb(43, 55, 82);
+}
+
+.sudoku-cell:nth-child(-n+9) {
+  border-top: 3px solid rgb(43, 55, 82);
+}
+
 .sudoku-cell:nth-child(27n),
 .sudoku-cell:nth-child(27n-1),
 .sudoku-cell:nth-child(27n-2),
@@ -54,20 +64,19 @@
 .sudoku-cell:nth-child(27n-6),
 .sudoku-cell:nth-child(27n-7),
 .sudoku-cell:nth-child(27n-8) {
-  border-bottom: 2px solid rgb(43, 55, 82);
+  border-bottom: 3px solid rgb(43, 55, 82);
 }
 
 .wrong {
   color: red;
 }
+
 /* Formato del sudoku */
 
 /* Formato de los botones */
 .game-bottoms {
   display: flex;
   flex-direction: column;
-  justify-content:center ;
-  align-items: center;
   gap: 10px;
   height: 100%;
 }
@@ -79,20 +88,24 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 120px;
+  width: 130px;
 }
 
 .game-bottom:hover {
-  background-color:  rgb(51, 147, 134);
+  background-color: rgb(51, 147, 134);
 }
+
 /* Formato de los botones */
 
 /* Formato del cronometro */
 .chrono {
-  border: 2px solid  rgb(46, 110, 101);
+  border: 2px solid rgb(46, 110, 101);
   padding: 8px;
-  margin: 5px;
-  background: white;
+  background: rgb(134, 238, 96);
+  width: 8%;
+  text-align: center;
+  margin-left: 46%;
 
 }
+
 /* Formato del cronometro */
